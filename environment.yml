@@ -1,0 +1,20 @@
+name: irm_for_nli
+channels:
+  - conda-forge
+  - pytorch
+dependencies:
+  - numpy
+  - requests
+  - captum
+  - ipython
+  - tqdm
+  - tensorboard==2.3.0
+  - transformers
+  - pytorch==1.7.0
+  - cudatoolkit=11.0
+  - matplotlib
+  - pandas
+  - python==3.8.6
+  - scikit-learn
+  - lit-nlp
+prefix: /home/yanadr/miniconda3/envs/irm

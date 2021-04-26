@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="lambda">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/yanadr/irm_for_nli/synthetic_bias" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="yanadr@132.68.39.159:22 password">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/yanadr/irm_for_nli/synthetic_bias" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>

@@ -1,0 +1,1 @@
+finished command  main.py score-hypothesis-bias --out-dir scores/hypothesis_bias/snli --dataset SNLI --k 4 --bs-train 512 --bs-val 512 --eval-every-x-epoch 0.2 --epochs 4 --lr 5e-5  --early-stopping 5 --seed 671362882 --gradient-checkpoint
