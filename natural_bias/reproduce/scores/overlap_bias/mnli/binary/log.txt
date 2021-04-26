@@ -1,1 +1,0 @@
-finished command  main.py score-overlap-bias-MLP --out-dir scores/overlap_bias/mnli/binary --dataset MNLI_Binary --class-weights  --k 4 --bs-train 512 --bs-val 512 --eval-every-x-epoch 0.2 --epochs 25 --lr 1e-3  --early-stopping 5 --seed 671362882 --gradient-checkpoint
