@@ -51,16 +51,26 @@ datasets_config = {'SNLI': {'urlpath': 'https://nlp.stanford.edu/projects/snli/s
                                    }
                    }
 
-datafiles_config = {'HANS': {'urlpath': 'https://raw.githubusercontent.com/tommccoy1/hans/master/heuristics_evaluation_set.txt',
-                             'files': ['heuristics_evaluation_set.txt'],
-                             'NUM_LABELS': 2,
-                             'label_str_to_int': lambda x: {'non-entailment': 0, 'entailment': 1}[x],
-                             'label_int_to_str': lambda x: ['non-entailment', 'entailment'][x],
-                             'fields': ['pairID', 'gold_label', 'sentence1', 'sentence1_binary_parse', 'sentence2',
-                                        'sentence2_binary_parse', 'heuristic', 'subcase'],
-                             'filters': {}
-                             }
-                    }
+datafiles_config = {
+    'HANS': {'urlpath': 'https://raw.githubusercontent.com/tommccoy1/hans/master/heuristics_evaluation_set.txt',
+             'files': ['heuristics_evaluation_set.txt'],
+             'NUM_LABELS': 2,
+             'label_str_to_int': lambda x: {'non-entailment': 0, 'entailment': 1}[x],
+             'label_int_to_str': lambda x: ['non-entailment', 'entailment'][x],
+             'fields': ['pairID', 'gold_label', 'sentence1', 'sentence1_binary_parse', 'sentence2',
+                        'sentence2_binary_parse', 'heuristic', 'subcase'],
+             'filters': {}
+             },
+    'SNLI_hard': {'urlpath': 'https://nlp.stanford.edu/projects/snli/snli_1.0_test_hard.jsonl',
+                  'files': ['snli_1.0_test_hard.jsonl'],
+                  'NUM_LABELS': 3,
+                  'label_str_to_int': lambda x: {'contradiction': 0, 'entailment': 1, 'neutral': 2}[x],
+                  'label_int_to_str': lambda x: ['contradiction', 'entailment', 'neutral'][x],
+                  'fields': ['sentence1', 'sentence1_binary_parse', 'sentence2', 'sentence2_binary_parse',
+                             'gold_label'],
+                  'filters': {'sentence1': [''], 'sentence2': [''], 'gold_label': ['', '-']}
+                  }
+    }
 
 
 def prepare_dataset(dataset='SNLI', force=False):
@@ -120,11 +130,10 @@ def prepare_data_file(datafile='HANS', force=False):
     urlpath, files, fields, filters = cfg['urlpath'], cfg['files'], cfg['fields'], cfg['filters']
     mappings = cfg.get('mappings', None)
     file_type = Path(urlpath).suffix
-    assert file_type == '.txt', "Only .txt files supported"
-    filepath = '/'.join(['data', 'datafiles', datafile + '.txt'])
+    filepath = '/'.join(['data', 'datafiles', datafile + file_type])
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
 
-    if os.path.isfile(filepath) and not force:
+    if os.path.isfile('/'.join(['data', 'datafiles', datafile + '.txt'])) and not force:
         pass
     else:
         response = requests.get(urlpath, stream=True)
@@ -133,7 +142,7 @@ def prepare_data_file(datafile='HANS', force=False):
                 text_file.write(chunk)
             text_file.truncate()
 
-        process_tsv(filepath, fields, filters, mappings=None)
+        process_tsv(filepath, fields, filters, mappings=mappings)
 
     return filepath
 
@@ -149,14 +158,22 @@ def process_tsv(filepath, fields, filters, mappings=None):
     # preprocess and save - get only required columns (according to fields)
     # and filter out invalid samples (according to filters)
     # only handles tsv files
-    with open(filepath, 'r+') as f:
-        df = pd.read_table(f, sep='\t+', keep_default_na=False)
-        if fields is not None:
-            df = df[fields]
-        for k in filters.keys():
-            df = df[~df[k].isin(filters[k])]
-        if mappings is not None:
-            df.replace(mappings, inplace=True)
+    filename, file_extension = os.path.splitext(filepath)
+    assert file_extension == '.txt' or file_extension == '.jsonl', "Only .txt and .jsonl files supported"
+    with open(filepath, 'r') as f:
+        if file_extension == '.txt':
+            df = pd.read_table(f, sep='\t+', keep_default_na=False)
+        else:
+            df = pd.read_json(f, orient='records', lines=True)
+    if fields is not None:
+        df = df[fields]
+    for k in filters.keys():
+        df = df[~df[k].isin(filters[k])]
+    if mappings is not None:
+        df.replace(mappings, inplace=True)
+    new_filepath = filename + '.txt'
+    os.remove(filepath)
+    with open(new_filepath, 'w') as f:
         f.seek(0)
         df.to_csv(f, sep='\t', index=False, line_terminator='\n')
         f.truncate()
@@ -168,3 +185,4 @@ if __name__ == "__main__":
     prepare_dataset(dataset='MNLI')
     prepare_dataset(dataset='MNLI_Binary')
     prepare_data_file('HANS')
+    prepare_data_file('SNLI_hard')
