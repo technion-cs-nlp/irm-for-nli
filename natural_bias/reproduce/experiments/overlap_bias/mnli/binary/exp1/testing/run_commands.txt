@@ -8,7 +8,6 @@ main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/o
 main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp1/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp1/irm/run3/dev_mismatched --subset test 
 main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp1/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp1/irm/run4/dev_mismatched --subset test 
 main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp1/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp1/irm/run5/dev_mismatched --subset test 
-
 main.py test-on-hans models/overlap_bias/mnli/binary/exp1/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp1/erm/run1/hans 
 main.py test-on-hans models/overlap_bias/mnli/binary/exp1/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp1/erm/run2/hans 
 main.py test-on-hans models/overlap_bias/mnli/binary/exp1/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp1/erm/run3/hans 

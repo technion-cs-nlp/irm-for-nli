@@ -1,0 +1,23 @@
+main.py test-on-splits data/SNLI/snli_1.0_test.txt models/hypothesis_bias/snli/exp1/erm/run1 --out-dir models/hypothesis_bias/snli/exp1/erm/run1/test --subset test 
+main.py test-on-splits data/SNLI/snli_1.0_test.txt models/hypothesis_bias/snli/exp1/erm/run2 --out-dir models/hypothesis_bias/snli/exp1/erm/run2/test --subset test 
+main.py test-on-splits data/SNLI/snli_1.0_test.txt models/hypothesis_bias/snli/exp1/erm/run3 --out-dir models/hypothesis_bias/snli/exp1/erm/run3/test --subset test 
+main.py test-on-splits data/SNLI/snli_1.0_test.txt models/hypothesis_bias/snli/exp1/erm/run4 --out-dir models/hypothesis_bias/snli/exp1/erm/run4/test --subset test 
+main.py test-on-splits data/SNLI/snli_1.0_test.txt models/hypothesis_bias/snli/exp1/erm/run5 --out-dir models/hypothesis_bias/snli/exp1/erm/run5/test --subset test 
+main.py test-on-splits data/SNLI/snli_1.0_test.txt models/hypothesis_bias/snli/exp1/irm/run1 --out-dir models/hypothesis_bias/snli/exp1/irm/run1/test --subset test 
+main.py test-on-splits data/SNLI/snli_1.0_test.txt models/hypothesis_bias/snli/exp1/irm/run2 --out-dir models/hypothesis_bias/snli/exp1/irm/run2/test --subset test 
+main.py test-on-splits data/SNLI/snli_1.0_test.txt models/hypothesis_bias/snli/exp1/irm/run3 --out-dir models/hypothesis_bias/snli/exp1/irm/run3/test --subset test 
+main.py test-on-splits data/SNLI/snli_1.0_test.txt models/hypothesis_bias/snli/exp1/irm/run4 --out-dir models/hypothesis_bias/snli/exp1/irm/run4/test --subset test 
+main.py test-on-splits data/SNLI/snli_1.0_test.txt models/hypothesis_bias/snli/exp1/irm/run5 --out-dir models/hypothesis_bias/snli/exp1/irm/run5/test --subset test 
+main.py test-on-file data/datafiles/SNLI_hard.txt models/hypothesis_bias/snli/exp1/erm/run1 --out-dir models/hypothesis_bias/snli/exp1/erm/run1/snli_hard 
+main.py test-on-file data/datafiles/SNLI_hard.txt models/hypothesis_bias/snli/exp1/erm/run2 --out-dir models/hypothesis_bias/snli/exp1/erm/run2/snli_hard 
+main.py test-on-file data/datafiles/SNLI_hard.txt models/hypothesis_bias/snli/exp1/erm/run3 --out-dir models/hypothesis_bias/snli/exp1/erm/run3/snli_hard 
+main.py test-on-file data/datafiles/SNLI_hard.txt models/hypothesis_bias/snli/exp1/erm/run4 --out-dir models/hypothesis_bias/snli/exp1/erm/run4/snli_hard 
+main.py test-on-file data/datafiles/SNLI_hard.txt models/hypothesis_bias/snli/exp1/erm/run5 --out-dir models/hypothesis_bias/snli/exp1/erm/run5/snli_hard 
+main.py test-on-file data/datafiles/SNLI_hard.txt models/hypothesis_bias/snli/exp1/irm/run1 --out-dir models/hypothesis_bias/snli/exp1/irm/run1/snli_hard 
+main.py test-on-file data/datafiles/SNLI_hard.txt models/hypothesis_bias/snli/exp1/irm/run2 --out-dir models/hypothesis_bias/snli/exp1/irm/run2/snli_hard 
+main.py test-on-file data/datafiles/SNLI_hard.txt models/hypothesis_bias/snli/exp1/irm/run3 --out-dir models/hypothesis_bias/snli/exp1/irm/run3/snli_hard 
+main.py test-on-file data/datafiles/SNLI_hard.txt models/hypothesis_bias/snli/exp1/irm/run4 --out-dir models/hypothesis_bias/snli/exp1/irm/run4/snli_hard 
+main.py test-on-file data/datafiles/SNLI_hard.txt models/hypothesis_bias/snli/exp1/irm/run5 --out-dir models/hypothesis_bias/snli/exp1/irm/run5/snli_hard 
+
+
+
