@@ -110,7 +110,10 @@ def test_irm(test_dir, out_dir='.', seed=None,
 
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     embed = nn.Embedding(len(VOCAB) + 1, embedd_dim, padding_idx=len(VOCAB))
-    model = NLINet(embed, num_layers=num_layers, hidden_dim=hidden_dim, multi_class=multi_class).to(device=device)
+    model = NLINet(embed, num_layers=num_layers, hidden_dim=hidden_dim, multi_class=multi_class)
+    model_filename = f'{os.path.sep.join([test_dir, "pytorch_model"])}.bin'
+    model.load_state_dict(torch.load(model_filename))
+    model = model.to(device=device)
     if multi_class:
         loss_fn = nn.CrossEntropyLoss()
     else:
