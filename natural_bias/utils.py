@@ -139,6 +139,14 @@ def show_gpu(msg):
 
 
 def calc_mean_var_for_test(parent_dir, test_dir):
+    """
+    Print mean and variances for metrics.
+    Assumes following directory tree structure: parent_dir / run[0-9] / test_dir / run_output.json
+    reads all run_output.json files from the runs and print mean and std for each metric.
+    :param parent_dir: parent directory as specified in tree structure
+    :param test_dir: test directory as specified in tree structure
+    :return: None
+    """
     acc_dict = defaultdict(lambda: [])
     f1_macro_dict = defaultdict(lambda: [])
     report_dict = defaultdict(lambda: [])
@@ -147,16 +155,21 @@ def calc_mean_var_for_test(parent_dir, test_dir):
                os.walk(parent_dir)))
     dirs = '\n'.join(list(map(lambda x: x[0], test_dirs)))
     print(f'Calculating mean and std for test runs: \n{dirs}\n')
+    # create dictionaries with list of metrics. Assume structure of run_output.json is a dictionary of some
+    # subsets/splits/etc. For each such subset/split read accuracy, f1_macro, classification_report and store as a list
+    # (of len of number of runs in parent directory) under the appropriate key in a designated dictionary
     for d in test_dirs:
         with open(os.sep.join([d[0], 'run_output.json'])) as f:
             res = json.load(f)['results']
             for k in res.keys():
-                acc_dict[k].append(res[k]['accuracy'])
+                if 'accuracy' in res[k].keys():
+                    acc_dict[k].append(res[k]['accuracy'])
                 if 'f1_macro' in res[k].keys():
                     f1_macro_dict[k].append(res[k]['f1_macro'])
                 if 'classification_report' in res[k].keys():
                     report_dict[k].append(res[k]['classification_report'])
 
+    # for each key in a designated dictionary, calculate mean and variance over list of metrics
     print('Accuracy:\n')
     for k in acc_dict.keys():
         mu, std = np.mean(acc_dict[k]), np.std(acc_dict[k])
@@ -164,12 +177,17 @@ def calc_mean_var_for_test(parent_dir, test_dir):
         print(f'{k} - mean {PM} std: {np.round(mu,2)} {PM} {np.round(std,2)}, min: {np.round(acc_min, 2)}, max: {np.round(acc_max, 2)}\n')
     print('F1 macro score:\n')
     for k in f1_macro_dict.keys():
-        mu, std = np.mean(f1_macro_dict[k]), np.std(f1_macro_dict[k])
-        f1_min, f1_max = np.min(f1_macro_dict[k]), np.max(f1_macro_dict[k])
+        f1 = np.array(f1_macro_dict[k]) * 100
+        mu, std = np.mean(f1), np.std(f1)
+        f1_min, f1_max = np.min(f1), np.max(f1)
         print(f'{k} - mean {PM} std: {np.round(mu,2)} {PM} {np.round(std,2)}, min: {np.round(f1_min, 2)}, max: {np.round(f1_max, 2)}\n')
     print('Classification report:')
     for k in report_dict.keys():
         df_list = [pd.DataFrame.from_dict(report_dict[k][i]) for i in range(len(report_dict[k]))]
+        for df in df_list:
+            for ind in ['precision', 'recall', 'f1-score']:
+                df.loc[ind, :] *= 100
+            df.drop(columns=['accuracy', 'weighted avg'], axis='columns', inplace=True)
         reports = np.stack([df.to_numpy() for df in df_list], axis=-1)
         mu, std = np.round(np.mean(reports, axis=-1), 2).tolist(), np.round(np.std(reports, axis=-1), 2).tolist()
         final_rep = [[str(x) + PM + str(y) for x, y in zip(mu_sublist, std_sublist)] for mu_sublist, std_sublist in zip(mu, std)]
@@ -207,9 +225,10 @@ def calc_steps_params(dl_train, eval_every_x_epoch=1.0, warm_up_epochs=0, irm_ep
     return int(batches_per_step), int(warm_up_steps), int(irm_steps)
 
 
-def print_metrics_on_hans(hans_path, hans_pred_path):
+def generate_classification_report_on_hans(hans_path, hans_pred_path):
     label_str_to_int = datafiles_config['HANS']['label_str_to_int']
     label_int_to_str = datafiles_config['HANS']['label_int_to_str']
+    num_labels = datafiles_config['HANS']['NUM_LABELS']
 
     hans_gt_required_fields = ['pairID', 'gold_label', 'heuristic']
     hans_gt_existing_fields = datafiles_config['HANS']['fields']
@@ -241,15 +260,12 @@ def print_metrics_on_hans(hans_path, hans_pred_path):
                    for gt_samp, pred_samp in zip(hans_gt_samples, hans_pred_samples) if gt_samp[-1] == heuristic]
         samples = [[label_str_to_int(x[0]), label_str_to_int(x[1])] for x in samples]
         y_true, y_pred = list(zip(*samples))
-        report_dict[heuristic] = classification_report(y_true, y_pred, labels=[0, 1], target_names=[label_int_to_str(0), label_int_to_str(1)])
-
-    for heuristic, report in report_dict.items():
-        print(f'Report for {heuristic} heuristic:\n')
-        print(report)
+        report_dict[heuristic] = {'classification_report': classification_report(y_true, y_pred,
+                                                                                 labels=[i for i in range(num_labels)],
+                                                       target_names=[label_int_to_str(i) for i in range(num_labels)],
+                                                                                 output_dict=True)}
 
     return report_dict
-
-
 
 
 

@@ -1,7 +1,7 @@
 from data_utils import prepare_dataset, prepare_data_file, datasets_config, datafiles_config
 from plotting_utils import *
 from dataset_utils import *
-from utils import flatten_list, calc_steps_params
+from utils import flatten_list, calc_steps_params, generate_classification_report_on_hans
 from sklearn.utils import class_weight
 from torch.utils.data import DataLoader
 from torch.optim import AdamW, SGD
@@ -930,15 +930,18 @@ def test_on_file(test_file, test_dir, out_dir='.', seed=None,
 
     res = tester.test(dl, reg=reg)
 
-    save_experiment(out_dir, run_config, res)
+    test_file_name = os.path.splitext(os.path.split(test_file)[-1])[0]
+    save_experiment(out_dir, run_config, {test_file_name: res})
 
 
 def test_on_hans(test_dir, out_dir='.', seed=None,
                  bs_test=32
                  ):
-    """Test a fine-tuned model on Hans and write predictions to hans_pres.txt file in the following format:
+    """Test a fine-tuned model on Hans.
+    Write predictions to hans_pres.txt file in the following format:
     tsv file with two columns - pairID (indicating the Hans sample pairID) and gold_label (indicating the predicted
-    label by the model)"""
+    label by the model).
+    Use predictions to generate run_output.json folder with classification report for each heuristic."""
     if not seed:
         seed = np.random.randint(0, 2 ** 31)
     torch.manual_seed(seed)
@@ -1002,7 +1005,8 @@ def test_on_hans(test_dir, out_dir='.', seed=None,
         df.to_csv(f, sep='\t', index=False, line_terminator='\n')
         f.truncate()
 
-    return out_file
+    res = generate_classification_report_on_hans(hans_filepath, out_file)
+    save_experiment(out_dir, run_config, res)
 
 
 def analyze_splits_difficulty(dataset, scores_file, subset, threshold1, threshold2):
