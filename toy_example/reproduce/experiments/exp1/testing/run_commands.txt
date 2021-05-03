@@ -1,0 +1,10 @@
+main.py test-irm models/exp1/erm/run1 --out-dir models/exp1/erm/run1/test 
+main.py test-irm models/exp1/erm/run2 --out-dir models/exp1/erm/run2/test 
+main.py test-irm models/exp1/erm/run3 --out-dir models/exp1/erm/run3/test 
+main.py test-irm models/exp1/erm/run4 --out-dir models/exp1/erm/run4/test 
+main.py test-irm models/exp1/erm/run5 --out-dir models/exp1/erm/run5/test 
+main.py test-irm models/exp1/irm/run1 --out-dir models/exp1/irm/run1/test 
+main.py test-irm models/exp1/irm/run2 --out-dir models/exp1/irm/run2/test 
+main.py test-irm models/exp1/irm/run3 --out-dir models/exp1/irm/run3/test 
+main.py test-irm models/exp1/irm/run4 --out-dir models/exp1/irm/run4/test 
+main.py test-irm models/exp1/irm/run5 --out-dir models/exp1/irm/run5/test 
