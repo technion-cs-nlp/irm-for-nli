@@ -920,7 +920,10 @@ def test_on_file(test_file, test_dir, out_dir='.', seed=None,
     # create biased datasets by appending unused tokens to hypothesis
     label_str_to_int = datasets_config[dataset]['label_str_to_int']
     label_int_to_str = datasets_config[dataset]['label_int_to_str']
-    fields = datasets_config[dataset]['fields']
+    assert os.path.isfile(test_file), f'{test_file} - No such file'
+    with open(test_file, 'r') as f:
+        header = f.readline()
+    fields = header.split()
     field_indices = [fields.index(field_name) for field_name in ['sentence1', 'sentence2', 'gold_label']]
     ds = create_dataset(test_file, field_indices, label_str_to_int, label_int_to_str)
 
@@ -931,7 +934,7 @@ def test_on_file(test_file, test_dir, out_dir='.', seed=None,
     res = tester.test(dl, reg=reg)
 
     test_file_name = os.path.splitext(os.path.split(test_file)[-1])[0]
-    save_experiment(out_dir, run_config, {test_file_name: res})
+    save_experiment(out_dir, run_config, {test_file_name: res._asdict()})
 
 
 def test_on_hans(test_dir, out_dir='.', seed=None,
