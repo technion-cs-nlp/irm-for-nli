@@ -38,6 +38,23 @@ main.py test-on-hans models/overlap_bias/mnli/binary/exp2/irm/run2 --out-dir mod
 main.py test-on-hans models/overlap_bias/mnli/binary/exp2/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp2/irm/run3/hans 
 main.py test-on-hans models/overlap_bias/mnli/binary/exp2/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp2/irm/run4/hans 
 main.py test-on-hans models/overlap_bias/mnli/binary/exp2/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp2/irm/run5/hans 
-
-
-
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run1 --out-dir models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run1/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run2 --out-dir models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run2/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run3 --out-dir models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run3/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run4 --out-dir models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run4/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run5 --out-dir models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run5/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run1 --out-dir models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run1/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run2 --out-dir models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run2/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run3 --out-dir models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run3/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run4 --out-dir models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run4/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run5 --out-dir models/overlap_bias/mnli/binary/exp2/unbiased_baseline/run5/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp2/erm/run1/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp2/erm/run2/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp2/erm/run3/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp2/erm/run4/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp2/erm/run5/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp2/irm/run1/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp2/irm/run2/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp2/irm/run3/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp2/irm/run4/hans_heuristics 
+main.py test-on-file data/datafiles/multinli_1.0_dev_mismatched_heristics.txt models/overlap_bias/mnli/binary/exp2/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp2/irm/run5/hans_heuristics 
