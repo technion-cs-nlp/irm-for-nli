@@ -100,7 +100,7 @@ def score_hypothesis_bias(out_dir='.', dataset='SNLI', pretrained_model='bert-ba
 
         if class_weights:
             weights = class_weight.compute_class_weight('balanced', classes=np.unique(train_fold.labels),
-                                              y=train_fold.labels).tolist()
+                                                        y=train_fold.labels).tolist()
             weights = torch.tensor(weights).to(device=device)
 
         else:
@@ -271,7 +271,7 @@ def score_overlap_bias_MLP(out_dir='.', dataset='SNLI',
 
         if class_weights:
             weights = class_weight.compute_class_weight('balanced', classes=np.unique(train_fold.labels),
-                                              y=train_fold.labels).tolist()
+                                                        y=train_fold.labels).tolist()
             weights = torch.tensor(weights).to(device=device)
         else:
             weights = None
@@ -489,7 +489,8 @@ def run_irm(scores_dir, out_dir='.', dataset='SNLI', pretrained_model='bert-base
     if class_weights:
         weights = []
         for env in ds_train:
-            weights.append(class_weight.compute_class_weight('balanced', classes=np.unique(env.labels), y=env.labels).tolist())
+            weights.append(
+                class_weight.compute_class_weight('balanced', classes=np.unique(env.labels), y=env.labels).tolist())
         weights = torch.mean(torch.tensor(weights), dim=0).to(device=device)
     else:
         weights = None
@@ -612,7 +613,8 @@ def run_irm_vs_unbiased(scores_dir, out_dir='.', dataset='SNLI', pretrained_mode
     if class_weights:
         weights = []
         for env in ds_train:
-            weights.append(class_weight.compute_class_weight('balanced', classes=np.unique(env.labels), y=env.labels).tolist())
+            weights.append(
+                class_weight.compute_class_weight('balanced', classes=np.unique(env.labels), y=env.labels).tolist())
         weights = torch.mean(torch.tensor(weights), dim=0).to(device=device)
     else:
         weights = None
@@ -716,17 +718,20 @@ def train_unbiased_baseline(scores_dir, out_dir='.', dataset='SNLI', pretrained_
     dataset_train = create_dataset(file_train, field_indices, label_str_to_int, label_int_to_str)
     dataset_val = create_dataset(file_val, field_indices, label_str_to_int, label_int_to_str)
 
-    unbiased_ind_train, _, _ = split_dataset_by_bias(dataset_train, train_scores, threshold1, threshold2)  # only unbiased examples
+    unbiased_ind_train, _, _ = split_dataset_by_bias(dataset_train, train_scores, threshold1,
+                                                     threshold2)  # only unbiased examples
     ds_train = NLISubset(dataset_train, flatten_list(unbiased_ind_train))
 
-    unbiased_ind_val, _, _ = split_dataset_by_bias(dataset_val, val_scores, threshold1, threshold2)  # only unbiased examples
+    unbiased_ind_val, _, _ = split_dataset_by_bias(dataset_val, val_scores, threshold1,
+                                                   threshold2)  # only unbiased examples
     ds_val = NLISubset(dataset_val, flatten_list(unbiased_ind_val))
 
     dl_train = [DataLoader(ds_train, batch_size=bs_train, shuffle=True)]
     dl_val = [DataLoader(ds_val, batch_size=bs_val)]
 
     if class_weights:
-        weights = class_weight.compute_class_weight('balanced', classes=np.unique(ds_train.labels), y=ds_train.labels).tolist()
+        weights = class_weight.compute_class_weight('balanced', classes=np.unique(ds_train.labels),
+                                                    y=ds_train.labels).tolist()
         weights = torch.tensor(weights).to(device=device)
     else:
         weights = None
@@ -831,6 +836,59 @@ def test_on_splits(test_file, test_dir, subset='val', out_dir='.', seed=None,
     save_experiment(out_dir, run_config, {'bias unaligned split': res_incorrectly_biased._asdict(),
                                           'bias aligned split': res_correctly_biased._asdict(),
                                           'unbiased split': res_unbiased._asdict()})
+
+
+def test_on_ood(test_file, test_dir, subset='val', out_dir='.', seed=None,
+                threshold1=None, threshold2=None,
+                bs_test=32
+                ):
+    """Test a fine-tuned model on ood split of a dataset"""
+    if not seed:
+        seed = np.random.randint(0, 2 ** 31)
+    torch.manual_seed(seed)
+    run_config = locals()
+
+    assert os.path.isdir(test_dir), "Model directory doesn't exist"
+    with open(f'{os.path.sep.join([test_dir, "run_output"])}.json') as config_file:
+        pretrained_cfg = json.load(config_file)['config']
+    pretrained_model, num_labels = pretrained_cfg['pretrained_model'], pretrained_cfg['num_labels']
+    reg = pretrained_cfg.get('reg', 0.0)
+    dataset = pretrained_cfg['dataset']
+    scores_dir = pretrained_cfg['scores_dir']
+    if threshold1 is None or threshold2 is None:
+        threshold1 = pretrained_cfg['threshold1']
+        threshold2 = pretrained_cfg['threshold2']
+
+    scores_file = f'{os.path.sep.join([scores_dir, "scores"])}.json'
+    train_scores, val_scores, test_scores = prepare_scores(scores_file)
+    if subset == 'train':
+        scores = train_scores
+    elif subset == 'val':
+        scores = val_scores
+    else:
+        scores = test_scores
+
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    tokenizer = BertTokenizer.from_pretrained(pretrained_model)
+    model = BertForSequenceClassification.from_pretrained(test_dir).to(device=device)
+    rng = np.random.RandomState(seed)
+
+    # create biased datasets by appending unused tokens to hypothesis
+    label_str_to_int = datasets_config[dataset]['label_str_to_int']
+    label_int_to_str = datasets_config[dataset]['label_int_to_str']
+    fields = datasets_config[dataset]['fields']
+    field_indices = [fields.index(field_name) for field_name in ['sentence1', 'sentence2', 'gold_label']]
+    ds = create_dataset(test_file, field_indices, label_str_to_int, label_int_to_str)
+    _, _, ds_incorrectly_biased_ind = split_dataset_by_bias(ds, scores, threshold1, threshold2)
+
+    dl_test_incorrectly_biased = [
+        DataLoader(NLISubset(ds, flatten_list(ds_incorrectly_biased_ind)), batch_size=bs_test)]
+
+    tester = IRMTrainer(model, num_labels, tokenizer, device=device)
+
+    res_incorrectly_biased = tester.test(dl_test_incorrectly_biased, reg=reg)
+
+    save_experiment(out_dir, run_config, {'bias unaligned split': res_incorrectly_biased._asdict()})
 
 
 def test_on_envs(test_file, test_dir, subset='val', out_dir='.', seed=None,
@@ -1454,6 +1512,35 @@ def parse_cli():
                                 help='Scores for which the probability of the ground truth label is above this '
                                      'threshold are considered correctly biased.')
     sp_test_splits.add_argument('--bs-test', type=int, help='Batch size',
+                                default=32, metavar='BATCH_SIZE')
+
+    # </editor-fold>
+
+    sp_test_ood = sp.add_parser('test-on-ood', help='Evaluate model ood of on test or validation')
+    sp_test_ood.set_defaults(subcmd_fn=test_on_ood)
+
+    # <editor-fold desc="test-on-splits params">
+    sp_test_ood.add_argument('test_file', type=str,
+                                help='File to evaluate model on')
+    sp_test_ood.add_argument('test_dir', type=str,
+                                help='Name dir to load fine-tuned model')
+
+    sp_test_ood.add_argument('--out-dir', type=str,
+                                help='Name dir to save results',
+                                default='.')
+    sp_test_ood.add_argument('--subset', type=str,
+                                help='The subset according to which we load scores',
+                                choices=['train', 'val', 'test'], default='val')
+
+    sp_test_ood.add_argument('--seed', '-s', type=int, help='Random seed',
+                                required=False)
+    sp_test_ood.add_argument('--threshold1', type=float,
+                                help='Scores whose total variation distance from uniform distribution is'
+                                     'less then this threshold are considered unbiased')
+    sp_test_ood.add_argument('--threshold2', type=float,
+                                help='Scores for which the probability of the ground truth label is above this '
+                                     'threshold are considered correctly biased.')
+    sp_test_ood.add_argument('--bs-test', type=int, help='Batch size',
                                 default=32, metavar='BATCH_SIZE')
 
     # </editor-fold>

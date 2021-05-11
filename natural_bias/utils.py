@@ -138,7 +138,7 @@ def show_gpu(msg):
     print('\n' + msg, f'{100 * pct:2.1f}% ({used} out of {total})')
 
 
-def calc_mean_var_for_test(parent_dir, test_dir):
+def calc_mean_var_for_test(parent_dir, test_dir, filter_dir=None, topk=3, filter_metric='accuracy'):
     """
     Print mean and variances for metrics.
     Assumes following directory tree structure: parent_dir / run[0-9] / test_dir / run_output.json
@@ -147,19 +147,37 @@ def calc_mean_var_for_test(parent_dir, test_dir):
     :param test_dir: test directory as specified in tree structure
     :return: None
     """
+    if filter_dir is not None:
+        filter_dict = {}
+        # read all results from filter dirs
+        filter_dirs = list(
+            filter(lambda x: re.match('.*run[0-9]+.*/' + filter_dir, x[0]) is not None and 'run_output.json' in x[2],
+                   os.walk(parent_dir)))
+        for d in filter_dirs:
+            with open(os.sep.join([d[0], 'run_output.json'])) as f:
+                res = json.load(f)['results']
+            filter_dict[d[0]] = res['bias unaligned split'][filter_metric]
+        # get topk results with their appropriate dir
+        filter_dict = {key: filter_dict[key] for key in sorted(filter_dict, key=filter_dict.get, reverse=True)[:topk]}
+        dirs = list(map(os.path.dirname, list(filter_dict.keys())))
+    else:
+        dirs = list(
+            filter(lambda x: re.match('.*run[0-9]+.*/' + test_dir, x[0]) is not None and 'run_output.json' in x[2],
+                   os.walk(parent_dir)))
+        dirs = list(map(lambda x: os.path.dirname(x[0]), dirs))
+
+    ############################
     acc_dict = defaultdict(lambda: [])
     f1_macro_dict = defaultdict(lambda: [])
     report_dict = defaultdict(lambda: [])
-    test_dirs = list(
-        filter(lambda x: re.match('.*run[0-9]+.*/' + test_dir, x[0]) is not None and 'run_output.json' in x[2],
-               os.walk(parent_dir)))
-    dirs = '\n'.join(list(map(lambda x: x[0], test_dirs)))
+    test_dirs = list(map(lambda x: x + '/' + test_dir, dirs))
+    dirs = '\n'.join(test_dirs)
     print(f'Calculating mean and std for test runs: \n{dirs}\n')
     # create dictionaries with list of metrics. Assume structure of run_output.json is a dictionary of some
     # subsets/splits/etc. For each such subset/split read accuracy, f1_macro, classification_report and store as a list
     # (of len of number of runs in parent directory) under the appropriate key in a designated dictionary
     for d in test_dirs:
-        with open(os.sep.join([d[0], 'run_output.json'])) as f:
+        with open(os.sep.join([d, 'run_output.json'])) as f:
             res = json.load(f)['results']
             for k in res.keys():
                 if 'accuracy' in res[k].keys():
@@ -266,6 +284,7 @@ def generate_classification_report_on_hans(hans_path, hans_pred_path):
                                                                                  output_dict=True)}
 
     return report_dict
+
 
 
 
