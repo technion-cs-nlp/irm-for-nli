@@ -138,7 +138,7 @@ def show_gpu(msg):
     print('\n' + msg, f'{100 * pct:2.1f}% ({used} out of {total})')
 
 
-def calc_mean_var_for_test(parent_dir, test_dir, filter_dir=None, topk=3, filter_metric='accuracy'):
+def calc_mean_var_for_test(parent_dir, test_dir, filter_dir=None, topk=1, filter_key='bias unaligned split', filter_metric='accuracy'):
     """
     Print mean and variances for metrics.
     Assumes following directory tree structure: parent_dir / run[0-9] / test_dir / run_output.json
@@ -156,7 +156,7 @@ def calc_mean_var_for_test(parent_dir, test_dir, filter_dir=None, topk=3, filter
         for d in filter_dirs:
             with open(os.sep.join([d[0], 'run_output.json'])) as f:
                 res = json.load(f)['results']
-            filter_dict[d[0]] = res['bias unaligned split'][filter_metric]
+            filter_dict[d[0]] = res[filter_key][filter_metric]
         # get topk results with their appropriate dir
         filter_dict = {key: filter_dict[key] for key in sorted(filter_dict, key=filter_dict.get, reverse=True)[:topk]}
         dirs = list(map(os.path.dirname, list(filter_dict.keys())))
