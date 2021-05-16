@@ -238,9 +238,13 @@ class Trainer(abc.ABC):
             if post_epoch_fn:
                 post_epoch_fn(step, train_result, test_result, verbose)
 
-        fig = plot_predictions(unique_samples_predictions)
-        writer.add_figure('Model Predictions', fig)
         ans_warm_up = actual_num_warm_up_steps if actual_num_warm_up_steps is not None else warm_up_steps
+        if irm_steps and irm_reg:
+            fig = plot_predictions(unique_samples_predictions, ans_warm_up)
+        else:
+            fig = plot_predictions(unique_samples_predictions)
+        writer.add_figure('Model Predictions', fig)
+        fig.savefig(f'{os.path.sep.join([checkpoint_dir, "model_predictions"])}.png')
         return FitResult(num_warm_up_steps=ans_warm_up, num_steps=actual_num_steps,
                          train_loss=train_loss, train_error=train_error, train_penalty=train_penalty,
                          train_acc=train_acc,

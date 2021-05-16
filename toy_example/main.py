@@ -83,6 +83,8 @@ def run_irm(out_dir='.', seed=None, embedd_dim=10, hidden_dim=10, num_layers=1, 
     saved_state = torch.load(checkpoint_filename)
     model.load_state_dict(saved_state['model_state_dict'])
     save_experiment(out_dir, run_config, res, model)
+    os.rename(f'{os.path.sep.join([checkpoint_dir, "model_predictions"])}.png',
+              f'{os.path.sep.join([out_dir, "model_predictions"])}.png')
     writer = SummaryWriter(os.path.sep.join([checkpoint_dir, "tensorboard"]), flush_secs=10)
     for k in ['train_env_prob', 'val_env_prob']:
         run_config[k] = str(run_config[k])
