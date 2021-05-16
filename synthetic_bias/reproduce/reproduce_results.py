@@ -155,3 +155,55 @@ ax.set_xlabel('proportion of biased samples', fontsize=22, labelpad=14.0)
 ax.legend(fontsize=18, loc="lower right")
 fig.savefig('biased_samples_ratio_exp.png')
 # </editor-fold>
+
+
+# <editor-fold desc="bias strength reproduce plot ">
+erm_acc, irm_acc = [], []
+prob_vector = []
+
+for i in range(1, 5):
+    exp_dir = f'models/exp4/prob{i}'
+    probs = []
+    erm_model_dirs = list(
+        filter(lambda x: re.match('.*run[0-9]+.*', x[0]) is not None
+                         and all([f in x[2] for f in ['run_output.json', 'pytorch_model.bin', 'config.json']]),
+               os.walk(os.sep.join([exp_dir, 'erm']))))
+    erm_model_dirs = list(map(lambda x: x[0], erm_model_dirs))
+    irm_model_dirs = list(
+        filter(lambda x: re.match('.*run[0-9]+.*', x[0]) is not None
+                         and all([f in x[2] for f in ['run_output.json', 'pytorch_model.bin', 'config.json']]),
+               os.walk(os.sep.join([exp_dir, 'irm']))))
+    irm_model_dirs = list(map(lambda x: x[0], irm_model_dirs))
+    # test ERM on SNLI test file with p=0.8, p=0.33, p=0.2
+    for directories in [erm_model_dirs, irm_model_dirs]:
+        for d in directories:
+            with open(os.sep.join([d, 'run_output.json'])) as f:
+                f_config = json.load(f)['config']
+            probs.append(str(tuple(f_config['train_env_prob'])))
+            if not os.path.isfile(os.sep.join([d, 'test_ood', 'run_output.json'])):
+                test_irm('data/SNLI/snli_1.0_test.txt', test_dir=d, out_dir=os.sep.join([d, 'test_ood']), env_prob=(0.33,))
+
+    assert len(set(probs)) == 1, 'Different probabilities in same directory'
+    erm_acc.append(calc_mean_var_for_test(os.sep.join([exp_dir, 'erm']), 'test_ood', verbose=False))
+    irm_acc.append(calc_mean_var_for_test(os.sep.join([exp_dir, 'irm']), 'test_ood', verbose=False))
+    prob_vector.append(probs[0])
+
+fig, ax = plt.subplots(figsize=(12.0, 8.0), dpi=240)
+
+xticks = np.array([1, 2, 3, 4])
+bp_erm = ax.boxplot(erm_acc, positions=xticks-0.2, widths=[0.3]*len(xticks), patch_artist=True, showfliers=False)
+bp_irm = ax.boxplot(irm_acc, positions=xticks+0.2, widths=[0.3]*len(xticks), patch_artist=True, showfliers=False)
+
+ax.set_xticks(xticks)
+ax.set_xticklabels(prob_vector, fontsize=16)
+ax.set_yticklabels(np.round(ax.get_yticks(), 2), fontsize=16)
+ax.set_ylabel('accuracy', fontsize=22, labelpad=14.0)
+ax.set_xlabel('Environment probabilities', fontsize=22, labelpad=14.0)
+
+for artist in bp_erm["boxes"]:
+    artist.set(facecolor='lightblue')
+for artist in bp_irm["boxes"]:
+    artist.set(facecolor='bisque')
+ax.legend([bp_erm["boxes"][0], bp_irm["boxes"][0]], ['ERM', 'IRM'], loc='upper right', fontsize=18)
+fig.savefig('env_prob_exp.png')
+# </editor-fold>
