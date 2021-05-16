@@ -226,7 +226,7 @@ def attribution_to_heatmap_figure(attr, raw_text):
     return fig
 
 
-def calc_mean_var_metric(parent_dir, test_dir, metric='accuracy'):
+def calc_mean_var_for_test(parent_dir, test_dir, metric='accuracy', verbose=True):
     """
     Search for directories with the pattern "parent_dir/<any_num_of_subdirs>/run<number>/test_dir
     containing a 'run_output.json' file and calculate accuracy (mean and std) across these runs.
@@ -237,14 +237,16 @@ def calc_mean_var_metric(parent_dir, test_dir, metric='accuracy'):
         filter(lambda x: re.match('.*run[0-9]+.*/' + test_dir, x[0]) is not None and 'run_output.json' in x[2],
                os.walk(parent_dir)))
     dirs = '\n'.join(list(map(lambda x: x[0], test_dirs)))
-    print(f'Calculating mean and std for test runs: {dirs}\n')
+    if verbose:
+        print(f'Calculating mean and std for test runs: {dirs}\n')
     for d in test_dirs:
         with open(os.sep.join([d[0], 'run_output.json'])) as f:
             res = json.load(f)['results']
             metric_list.append(res[metric])
     mu, std = np.mean(metric_list), np.std(metric_list)
     metric_min, metric_max = np.min(metric_list), np.max(metric_list)
-    print(
+    if verbose:
+        print(
         f'Accuracy - {np.round(mu, 2)} {PM} {np.round(std, 2)}, min: {np.round(metric_min, 2)}, max: {np.round(metric_max, 2)}')
 
     return metric_list
