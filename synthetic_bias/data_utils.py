@@ -122,4 +122,3 @@ def process_tsv(filepath, fields=None, filters=None):
 
 if __name__ == "__main__":
     prepare_dataset(dataset='SNLI')
-    prepare_dataset(dataset='MNLI')
