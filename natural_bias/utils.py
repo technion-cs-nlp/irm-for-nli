@@ -211,6 +211,11 @@ def calc_mean_var_for_test(parent_dir, test_dir, filter_dir=None, topk=1, filter
         final_rep = [[str(x) + PM + str(y) for x, y in zip(mu_sublist, std_sublist)] for mu_sublist, std_sublist in zip(mu, std)]
         print(f'\n{k} - mean {PM} std:\n')
         print(pd.DataFrame.from_records(final_rep, columns=df_list[0].columns, index=df_list[0].index))
+        min_final_rep, max_final_rep = np.round(np.min(reports, axis=-1), 2).tolist(), np.round(np.max(reports, axis=-1), 2).tolist()
+        print(f'\n{k} - min:\n')
+        print(pd.DataFrame.from_records(min_final_rep, columns=df_list[0].columns, index=df_list[0].index))
+        print(f'\n{k} - max:\n')
+        print(pd.DataFrame.from_records(max_final_rep, columns=df_list[0].columns, index=df_list[0].index))
 
 
 @contextlib.contextmanager
