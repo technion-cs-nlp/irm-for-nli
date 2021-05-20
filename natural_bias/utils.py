@@ -12,7 +12,6 @@ from data_utils import datafiles_config
 from sklearn.metrics import classification_report
 import pandas as pd
 
-
 PM = u'\u00b1'
 
 
@@ -138,7 +137,8 @@ def show_gpu(msg):
     print('\n' + msg, f'{100 * pct:2.1f}% ({used} out of {total})')
 
 
-def calc_mean_var_for_test(parent_dir, test_dir, filter_dir=None, topk=1, filter_key='bias unaligned split', filter_metric='accuracy'):
+def calc_mean_var_for_test(parent_dir, test_dir, verbose=True,
+                           filter_dir=None, topk=1, filter_key='bias unaligned split', filter_metric='accuracy'):
     """
     Print mean and variances for metrics.
     Assumes following directory tree structure: parent_dir / run[0-9] / test_dir / run_output.json
@@ -172,7 +172,8 @@ def calc_mean_var_for_test(parent_dir, test_dir, filter_dir=None, topk=1, filter
     report_dict = defaultdict(lambda: [])
     test_dirs = list(map(lambda x: x + '/' + test_dir, dirs))
     dirs = '\n'.join(test_dirs)
-    print(f'Calculating mean and std for test runs: \n{dirs}\n')
+    if verbose:
+        print(f'Calculating mean and std for test runs: \n{dirs}\n')
     # create dictionaries with list of metrics. Assume structure of run_output.json is a dictionary of some
     # subsets/splits/etc. For each such subset/split read accuracy, f1_macro, classification_report and store as a list
     # (of len of number of runs in parent directory) under the appropriate key in a designated dictionary
@@ -187,18 +188,29 @@ def calc_mean_var_for_test(parent_dir, test_dir, filter_dir=None, topk=1, filter
                 if 'classification_report' in res[k].keys():
                     report_dict[k].append(res[k]['classification_report'])
 
+    acc_dict_out, f1_macro_dict_out, report_dict_out = dict([(x, {}) for x in acc_dict.keys()]), \
+                                                       dict([(x, {}) for x in f1_macro_dict.keys()]), \
+                                                       dict([(x, {}) for x in report_dict.keys()])
     # for each key in a designated dictionary, calculate mean and variance over list of metrics
-    print('Accuracy:\n')
+    if verbose:
+        print('Accuracy:\n')
     for k in acc_dict.keys():
         mu, std = np.mean(acc_dict[k]), np.std(acc_dict[k])
         acc_min, acc_max = np.min(acc_dict[k]), np.max(acc_dict[k])
-        print(f'{k} - mean {PM} std: {np.round(mu,2)} {PM} {np.round(std,2)}, min: {np.round(acc_min, 2)}, max: {np.round(acc_max, 2)}\n')
-    print('F1 macro score:\n')
+        acc_dict_out[k]['mean'], acc_dict_out[k]['std'] = mu, std
+        acc_dict_out[k]['min'], acc_dict_out[k]['max'] = acc_min, acc_max
+        if verbose:
+            print(f'{k} - mean {PM} std: {np.round(mu, 2)} {PM} {np.round(std, 2)}, min: {np.round(acc_min, 2)}, max: {np.round(acc_max, 2)}\n')
+    if verbose:
+        print('F1 macro score:\n')
     for k in f1_macro_dict.keys():
         f1 = np.array(f1_macro_dict[k]) * 100
         mu, std = np.mean(f1), np.std(f1)
         f1_min, f1_max = np.min(f1), np.max(f1)
-        print(f'{k} - mean {PM} std: {np.round(mu,2)} {PM} {np.round(std,2)}, min: {np.round(f1_min, 2)}, max: {np.round(f1_max, 2)}\n')
+        f1_macro_dict_out['mean'], f1_macro_dict_out['std'] = mu, std
+        f1_macro_dict_out['min'], f1_macro_dict_out['max'] = f1_min, f1_max
+        if verbose:
+            print(f'{k} - mean {PM} std: {np.round(mu, 2)} {PM} {np.round(std, 2)}, min: {np.round(f1_min, 2)}, max: {np.round(f1_max, 2)}\n')
     print('Classification report:')
     for k in report_dict.keys():
         df_list = [pd.DataFrame.from_dict(report_dict[k][i]) for i in range(len(report_dict[k]))]
@@ -208,14 +220,23 @@ def calc_mean_var_for_test(parent_dir, test_dir, filter_dir=None, topk=1, filter
             df.drop(columns=['accuracy', 'weighted avg'], axis='columns', inplace=True)
         reports = np.stack([df.to_numpy() for df in df_list], axis=-1)
         mu, std = np.round(np.mean(reports, axis=-1), 2).tolist(), np.round(np.std(reports, axis=-1), 2).tolist()
-        final_rep = [[str(x) + PM + str(y) for x, y in zip(mu_sublist, std_sublist)] for mu_sublist, std_sublist in zip(mu, std)]
-        print(f'\n{k} - mean {PM} std:\n')
-        print(pd.DataFrame.from_records(final_rep, columns=df_list[0].columns, index=df_list[0].index))
-        min_final_rep, max_final_rep = np.round(np.min(reports, axis=-1), 2).tolist(), np.round(np.max(reports, axis=-1), 2).tolist()
-        print(f'\n{k} - min:\n')
-        print(pd.DataFrame.from_records(min_final_rep, columns=df_list[0].columns, index=df_list[0].index))
-        print(f'\n{k} - max:\n')
-        print(pd.DataFrame.from_records(max_final_rep, columns=df_list[0].columns, index=df_list[0].index))
+        final_rep = [[str(x) + PM + str(y) for x, y in zip(mu_sublist, std_sublist)] for mu_sublist, std_sublist in
+                     zip(mu, std)]
+        min_final_rep, max_final_rep = np.round(np.min(reports, axis=-1), 2).tolist(), np.round(
+            np.max(reports, axis=-1), 2).tolist()
+        report_dict_out[k]['mean_pm_std'] = pd.DataFrame.from_records(final_rep, columns=df_list[0].columns, index=df_list[0].index)
+        report_dict_out[k]['min'] = pd.DataFrame.from_records(min_final_rep, columns=df_list[0].columns, index=df_list[0].index)
+        report_dict_out[k]['max'] = pd.DataFrame.from_records(max_final_rep, columns=df_list[0].columns, index=df_list[0].index)
+        if verbose:
+            print(f'\n{k} - mean {PM} std:\n')
+            print(pd.DataFrame.from_records(final_rep, columns=df_list[0].columns, index=df_list[0].index))
+            print(f'\n{k} - min:\n')
+            print(pd.DataFrame.from_records(min_final_rep, columns=df_list[0].columns, index=df_list[0].index))
+            print(f'\n{k} - max:\n')
+            print(pd.DataFrame.from_records(max_final_rep, columns=df_list[0].columns, index=df_list[0].index))
+
+    if not verbose:
+        return acc_dict_out, f1_macro_dict_out, report_dict_out
 
 
 @contextlib.contextmanager
@@ -285,11 +306,8 @@ def generate_classification_report_on_hans(hans_path, hans_pred_path):
         y_true, y_pred = list(zip(*samples))
         report_dict[heuristic] = {'classification_report': classification_report(y_true, y_pred,
                                                                                  labels=[i for i in range(num_labels)],
-                                                       target_names=[label_int_to_str(i) for i in range(num_labels)],
+                                                                                 target_names=[label_int_to_str(i) for i
+                                                                                               in range(num_labels)],
                                                                                  output_dict=True)}
 
     return report_dict
-
-
-
-
