@@ -4,7 +4,6 @@ import requests
 import pandas as pd
 import zipfile
 
-
 datasets_config = {'SNLI': {'urlpath': 'https://nlp.stanford.edu/projects/snli/snli_1.0.zip',
                             'files': ['snli_1.0_train.txt', 'snli_1.0_dev.txt', 'snli_1.0_test.txt'],
                             'fields': ['sentence1', 'sentence2', 'gold_label'],
@@ -15,6 +14,15 @@ datasets_config = {'SNLI': {'urlpath': 'https://nlp.stanford.edu/projects/snli/s
                             'fields': ['sentence1', 'sentence2', 'gold_label'],
                             'filters': {'sentence1': [''], 'sentence2': [''], 'gold_label': ['', '-']}}
                    }
+
+datafiles_config = {'SNLI_hard': {'urlpath': 'https://nlp.stanford.edu/projects/snli/snli_1.0_test_hard.jsonl',
+                                  'files': ['snli_1.0_test_hard.jsonl'],
+                                  'fields': ['sentence1', 'sentence1_binary_parse', 'sentence2',
+                                             'sentence2_binary_parse',
+                                             'gold_label'],
+                                  'filters': {'sentence1': [''], 'sentence2': [''], 'gold_label': ['', '-']}
+                                  }
+                    }
 
 
 def prepare_dataset(dataset='SNLI', force=False):
@@ -64,41 +72,32 @@ def prepare_dataset(dataset='SNLI', force=False):
     return [sep.join([dataset_dir, file]) for file in files]
 
 
-def prepare_data_file(urlpath, name='datafile', fields=None, filters=None):
+def prepare_data_file(datafile='SNLI_hard', force=False):
     """
     Downloads a file from the url, processes it and writes in tsv format to 'data/data_files/<name>.txt.
     Returns the path to the written file. Supports jsonl and tsv file formats.
     """
+    cfg = datafiles_config[datafile]
+    urlpath, files, fields, filters = cfg['urlpath'], cfg['files'], cfg['fields'], cfg['filters']
     file_type = Path(urlpath).suffix
-    assert file_type in ['.jsonl', '.txt'], "Only .txt and .jsonl files supported"
-    filepath = '/'.join(['data', 'data_files', name + '.txt'])
+    filepath = '/'.join(['data', 'datafiles', datafile + file_type])
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
 
-    response = requests.get(urlpath, stream=True)
-    with open(filepath, "wb") as text_file:
-        for chunk in response.iter_content(chunk_size=1024):
-            text_file.write(chunk)
-        text_file.truncate()
+    if os.path.isfile('/'.join(['data', 'datafiles', datafile + '.txt'])) and not force:
+        pass
+    else:
+        response = requests.get(urlpath, stream=True)
+        with open(filepath, "wb") as text_file:
+            for chunk in response.iter_content(chunk_size=1024):
+                text_file.write(chunk)
+            text_file.truncate()
 
-    with open(filepath, 'r+') as f:
-        if file_type == '.jsonl':
-            df = pd.read_json(f, orient='records', lines=True)  # how to deal with possible none values?...
-        elif file_type == '.txt':
-            df = pd.read_table(f, sep='\t', keep_default_na=False)
-
-        if fields is not None:
-            df = df[fields]
-        if filters is not None:
-            for k in filters.keys():
-                df = df[~df[k].isin(filters[k])]
-        f.seek(0)
-        df.to_csv(f, sep='\t', index=False, line_terminator='\n')
-        f.truncate()
+        process_tsv(filepath, fields, filters)
 
     return filepath
 
 
-def process_tsv(filepath, fields=None, filters=None):
+def process_tsv(filepath, fields, filters):
     """
     Process tab separated file. Overwrites the input file with the processed version.
     :param filepath: path to file to process. Currently only tsv files are supported.
@@ -109,12 +108,20 @@ def process_tsv(filepath, fields=None, filters=None):
     # preprocess and save - get only required columns (according to fields)
     # and filter out invalid samples (according to filters)
     # only handles tsv files
-    with open(filepath, 'r+') as f:
-        df = pd.read_table(f, sep='\t+', keep_default_na=False)
-        if fields is not None:
-            df = df[fields]
-        for k in filters.keys():
-            df = df[~df[k].isin(filters[k])]
+    filename, file_extension = os.path.splitext(filepath)
+    assert file_extension == '.txt' or file_extension == '.jsonl', "Only .txt and .jsonl files supported"
+    with open(filepath, 'r') as f:
+        if file_extension == '.txt':
+            df = pd.read_table(f, sep='\t+', keep_default_na=False)
+        else:
+            df = pd.read_json(f, orient='records', lines=True)
+    if fields is not None:
+        df = df[fields]
+    for k in filters.keys():
+        df = df[~df[k].isin(filters[k])]
+    new_filepath = filename + '.txt'
+    os.remove(filepath)
+    with open(new_filepath, 'w') as f:
         f.seek(0)
         df.to_csv(f, sep='\t', index=False, line_terminator='\n')
         f.truncate()
@@ -122,3 +129,4 @@ def process_tsv(filepath, fields=None, filters=None):
 
 if __name__ == "__main__":
     prepare_dataset(dataset='SNLI')
+    prepare_data_file('SNLI_hard')
