@@ -17,9 +17,7 @@ datasets_config = {'SNLI': {'urlpath': 'https://nlp.stanford.edu/projects/snli/s
 
 datafiles_config = {'SNLI_hard': {'urlpath': 'https://nlp.stanford.edu/projects/snli/snli_1.0_test_hard.jsonl',
                                   'files': ['snli_1.0_test_hard.jsonl'],
-                                  'fields': ['sentence1', 'sentence1_binary_parse', 'sentence2',
-                                             'sentence2_binary_parse',
-                                             'gold_label'],
+                                  'fields': ['sentence1', 'sentence2', 'gold_label'],
                                   'filters': {'sentence1': [''], 'sentence2': [''], 'gold_label': ['', '-']}
                                   }
                     }
