@@ -197,6 +197,7 @@ def calc_mean_var_for_test(parent_dir, test_dir, verbose=True,
     for k in acc_dict.keys():
         mu, std = np.mean(acc_dict[k]), np.std(acc_dict[k])
         acc_min, acc_max = np.min(acc_dict[k]), np.max(acc_dict[k])
+        acc_dict_out[k]['vals'] = acc_dict[k]
         acc_dict_out[k]['mean'], acc_dict_out[k]['std'] = mu, std
         acc_dict_out[k]['min'], acc_dict_out[k]['max'] = acc_min, acc_max
         if verbose:
@@ -207,11 +208,13 @@ def calc_mean_var_for_test(parent_dir, test_dir, verbose=True,
         f1 = np.array(f1_macro_dict[k]) * 100
         mu, std = np.mean(f1), np.std(f1)
         f1_min, f1_max = np.min(f1), np.max(f1)
-        f1_macro_dict_out['mean'], f1_macro_dict_out['std'] = mu, std
-        f1_macro_dict_out['min'], f1_macro_dict_out['max'] = f1_min, f1_max
+        f1_macro_dict_out[k]['vals'] = (np.array(f1_macro_dict[k]) * 100).tolist()
+        f1_macro_dict_out[k]['mean'], f1_macro_dict_out[k]['std'] = mu, std
+        f1_macro_dict_out[k]['min'], f1_macro_dict_out[k]['max'] = f1_min, f1_max
         if verbose:
             print(f'{k} - mean {PM} std: {np.round(mu, 2)} {PM} {np.round(std, 2)}, min: {np.round(f1_min, 2)}, max: {np.round(f1_max, 2)}\n')
-    print('Classification report:')
+    if verbose:
+        print('Classification report:')
     for k in report_dict.keys():
         df_list = [pd.DataFrame.from_dict(report_dict[k][i]) for i in range(len(report_dict[k]))]
         for df in df_list:
