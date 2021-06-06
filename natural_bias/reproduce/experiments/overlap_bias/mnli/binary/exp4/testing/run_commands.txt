@@ -1,0 +1,200 @@
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run1/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run2/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run3/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run4/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run5/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run1/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run2/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run3/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run4/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run5/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run1/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run2/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run3/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run4/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run5/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run1/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run2/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run3/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run4/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run5/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run1/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run2/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run3/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run4/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run5/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run1/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run2/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run3/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run4/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run5/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run1/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run2/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run3/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run4/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run5/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run1/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run2/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run3/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run4/dev_mismatched_splits --subset test
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run5/dev_mismatched_splits --subset test
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size1/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run1/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size1/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run2/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size1/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run3/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size1/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run4/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size1/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run5/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size1/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run1/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size1/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run2/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size1/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run3/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size1/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run4/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size1/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run5/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size2/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run1/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size2/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run2/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size2/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run3/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size2/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run4/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size2/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run5/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size2/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run1/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size2/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run2/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size2/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run3/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size2/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run4/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size2/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run5/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size3/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run1/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size3/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run2/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size3/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run3/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size3/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run4/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size3/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run5/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size3/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run1/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size3/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run2/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size3/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run3/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size3/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run4/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size3/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run5/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size4/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run1/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size4/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run2/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size4/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run3/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size4/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run4/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size4/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run5/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size4/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run1/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size4/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run2/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size4/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run3/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size4/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run4/hans
+main.py test-on-hans models/overlap_bias/mnli/binary/exp4/size4/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run5/hans
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run1/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run2/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run3/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run4/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run5/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run1/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run2/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run3/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run4/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run5/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run1/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run2/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run3/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run4/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run5/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run1/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run2/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run3/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run4/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run5/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run1/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run2/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run3/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run4/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run5/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run1/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run2/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run3/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run4/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run5/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run1/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run2/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run3/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run4/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run5/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run1/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run2/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run3/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run4/dev_matched_splits --subset val
+main.py test-on-splits data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run5/dev_matched_splits --subset val
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run1/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run2/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run3/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run4/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run5/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run1/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run2/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run3/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run4/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run5/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run1/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run2/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run3/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run4/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run5/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run1/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run2/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run3/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run4/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run5/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run1/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run2/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run3/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run4/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run5/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run1/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run2/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run3/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run4/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run5/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run1/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run2/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run3/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run4/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run5/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run1/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run2/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run3/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run4/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_mismatched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run5/dev_mismatched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run1/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run2/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run3/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run4/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size1/irm/run5/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run1/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run2/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run3/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run4/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size2/irm/run5/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run1/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run2/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run3/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run4/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size1/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size1/erm/run5/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run1/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run2/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run3/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run4/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size2/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size2/erm/run5/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run1/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run2/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run3/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run4/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size3/irm/run5/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run1/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run2/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run3/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run4/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/irm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size4/irm/run5/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run1/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run2/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run3/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run4/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size3/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size3/erm/run5/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run1 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run1/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run2 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run2/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run3 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run3/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run4 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run4/dev_matched_file
+main.py test-on-file data/MNLI_Binary/multinli_1.0_dev_matched.txt models/overlap_bias/mnli/binary/exp4/size4/erm/run5 --out-dir models/overlap_bias/mnli/binary/exp4/size4/erm/run5/dev_matched_file
