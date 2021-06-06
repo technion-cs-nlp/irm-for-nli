@@ -238,8 +238,8 @@ def generate_heuristics_file(dataset='MNLI_Binary', force=False):
 
 if __name__ == "__main__":
     prepare_dataset(dataset='SNLI')
-    prepare_dataset(dataset='SNLI_Binary')
-    prepare_dataset(dataset='MNLI')
+    # prepare_dataset(dataset='SNLI_Binary')
+    # prepare_dataset(dataset='MNLI')
     prepare_dataset(dataset='MNLI_Binary')
     prepare_data_file('HANS')
     prepare_data_file('SNLI_hard')

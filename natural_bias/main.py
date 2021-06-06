@@ -1586,18 +1586,21 @@ if __name__ == "__main__":
     # dataset = 'SNLI'
     # label_str_to_int, label_int_to_str = datasets_config[dataset]['label_str_to_int'], datasets_config[dataset][
     #     'label_int_to_str']
+    # fields = datasets_config[dataset]['fields']
+    # field_indices = [fields.index(field_name) for field_name in ['sentence1', 'sentence2', 'gold_label']]
     # file_train, file_val, file_test = prepare_dataset(dataset)
-    # ds_train = create_dataset(file_train, label_str_to_int, label_int_to_str)
-    # ds_val = create_dataset(file_val, label_str_to_int, label_int_to_str)
-    # ds_test = create_dataset(file_test, label_str_to_int, label_int_to_str)
+    # ds_train = create_dataset(file_train, field_indices, label_str_to_int, label_int_to_str)
+    # ds_val = create_dataset(file_val, field_indices, label_str_to_int, label_int_to_str)
+    # ds_test = create_dataset(file_test, field_indices, label_str_to_int, label_int_to_str)
     #
-    # with open('scores/overlap_bias/snli/scores.json', 'r') as f:
+    # with open('scores/hypothesis_bias/snli/scores.json', 'r') as f:
     #     scores = json.load(f)
     # train_scores, val_scores, test_scores = scores['train_scores'], scores['val_scores'], scores['test_scores']
     # train_labels, val_labels, test_labels = ds_train.labels, ds_val.labels, ds_test.labels
-    # fig = plot_scores_histogram({'train': (train_scores, train_labels),
-    #                              'val': (val_scores, val_labels),
-    #                              'test': (test_scores, test_labels)}, 3, label_int_to_str)
+    # fig = plot_scores_histogram({'Train': (train_scores, train_labels),
+    #                              'Val': (val_scores, val_labels),
+    #                              'Test': (test_scores, test_labels)}, 2, label_int_to_str)
+    # fig.show()
     # fig = plot_splits_vs_thresholds(ds_train, train_scores, set='train')
     # fig.show()
     # run_irm('scores/overlap_bias/mnli_binary', out_dir='temp', dataset='MNLI_Binary',

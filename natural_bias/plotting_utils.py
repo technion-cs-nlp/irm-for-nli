@@ -46,7 +46,7 @@ def plot_scores_histogram(score_label_dict, num_labels, label_map_func):
     binned predictions (quantize predictions to 10 bins spreading [0,1]).
      """
     num_sets = len(score_label_dict)
-    fig, axes = plt.subplots(nrows=num_sets, ncols=num_labels, sharex=True, sharey='row', figsize=(20, 15), dpi=125)
+    fig, axes = plt.subplots(nrows=num_sets, ncols=num_labels, sharex=True, sharey='row', figsize=(30, 25), dpi=240)
     num_rows, num_cols = num_sets, num_labels
     for subset, ax in zip(score_label_dict.keys(), axes):
         scores, labels = score_label_dict[subset]
@@ -56,23 +56,25 @@ def plot_scores_histogram(score_label_dict, num_labels, label_map_func):
             n, bins, patches = a.hist(prob[labels == i, i], bins=np.arange(0.0, 1.1, 0.1),
                                       edgecolor='black', rwidth=0.7)
             a.set_xticks(bins)
-        ax[0].set_ylabel('Count of samples')
+            a.set_xticklabels(np.round(a.get_xticks(), 1), fontsize=24, rotation=45.0)
+            a.set_yticklabels(a.get_yticks().astype(int), fontsize=24, rotation=45.0)
+        ax[0].set_ylabel('Samples count', fontsize=32,  labelpad=22.0)
     for j in range(num_cols):
-        axes[-1, j].set_xlabel('Score')
+        axes[-1, j].set_xlabel('Predicted probability', fontsize=32,  labelpad=22.0)
 
 
     # <editor-fold desc="Col and row titles">
-    pad = 20  # in points
+    pad1, pad2 = 80, 40  # in points
 
     for ax, row in zip(axes[:, 0], score_label_dict.keys()):
-        ax.annotate(row, xy=(0, 0.5), xytext=(-ax.yaxis.labelpad - pad, 0),
+        ax.annotate(row, xy=(0, 0.5), xytext=(-ax.yaxis.labelpad - pad1, 0),
                     xycoords=ax.yaxis.label, textcoords='offset points',
-                    size='xx-large', ha='right', va='center')
+                    fontsize=38, ha='left', va='center')
 
     for ax, col in zip(axes[0], [f'{label_map_func(j)}' for j in range(num_labels)]):
-        ax.annotate(col, xy=(0.5, 1), xytext=(0, pad),
+        ax.annotate(col, xy=(0.5, 1), xytext=(0, pad2),
                     xycoords='axes fraction', textcoords='offset points',
-                    size='xx-large', ha='center', va='baseline')
+                    fontsize=38, ha='center', va='baseline')
     # </editor-fold>
 
     return fig

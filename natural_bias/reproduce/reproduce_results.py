@@ -782,7 +782,7 @@ if __name__ == "__main__":
     ax.set_ylabel('Accuracy', fontsize=28, labelpad=14.0)
     ax.set_xlabel('Dataset size', fontsize=28, labelpad=14.0)
     ax.grid(axis='both', color='k', linestyle=':', linewidth=0.5)
-    ax.legend(fontsize=24, loc='lower left')
+    ax.legend(fontsize=24, loc='lower right')
     leg = ax.get_legend()
     leg.legendHandles[0].set_color('royalblue')
     leg.legendHandles[0].set_sizes([200])
