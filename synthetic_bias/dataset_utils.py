@@ -8,7 +8,7 @@ import pandas as pd
 
 
 def create_datasets(filepath, num_datasets=1, biased_samples_ratio=0.0, env_prob=(0.0,), rng=None, bias_tokens=None,
-                    bias_pattern='simple'):
+                    bias_pattern='simple', size=None):
     """
     Create #(num_envs) NLIDatasets from filepath. This function reads data from filepath, splits the samples to
     disjoint subsets according to num_envs, and constructs a NLIDataset from each subset.
@@ -37,10 +37,18 @@ def create_datasets(filepath, num_datasets=1, biased_samples_ratio=0.0, env_prob
 
     if num_datasets > 1:
         rng.shuffle(samples)
-        lengths = [len(samples) // num_datasets] * num_datasets
-        print(f'Dropped {len(samples) % num_datasets} samples\n')
+        if size is not None:
+            assert len(samples) >= size, "Requested dataset size is too big"
+            lengths = [size // num_datasets] * num_datasets
+        else:
+            lengths = [len(samples) // num_datasets] * num_datasets
     else:
-        lengths = [len(samples)]
+        if size is not None:
+            assert len(samples) >= size, "Requested dataset size is too big"
+            lengths = [size]
+        else:
+            lengths = [len(samples)]
+    print(f'Dropped {len(samples) - sum(lengths)} samples\n')
 
     datasets = []
     for offset, length, prob in zip(accumulate(lengths), lengths, env_prob):

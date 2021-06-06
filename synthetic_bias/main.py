@@ -27,7 +27,8 @@ def run_irm(out_dir='.', dataset='SNLI', num_labels=3, pretrained_model='bert-ba
             train_env_prob=(0.8, 0.9), val_env_prob=(0.8, 0.9), val_ood_env_prob=(1 / 3,), biased_samples_ratio=1.0,
             bias_tokens_per_label=1, bias_pattern='simple',
             # Training params
-            bs_train=32, bs_val=32, eval_every_x_epoch=0.2, epochs=4, warm_up_epochs=2, early_stopping=3,
+            bs_train=32, bs_val=32, train_size=None, val_size=None,
+            eval_every_x_epoch=0.2, epochs=4, warm_up_epochs=2, early_stopping=3,
             reg=1e3, warm_up_reg=1.0, gradient_checkpoint=False,
             # optimizer params
             optimizer_type='Adam', lr=1e-5, momentum=0.9, beta1=0.9, beta2=0.999,
@@ -57,10 +58,10 @@ def run_irm(out_dir='.', dataset='SNLI', num_labels=3, pretrained_model='bert-ba
     assert bias_pattern == 'simple' or bias_tokens_per_label > 1, "Can't run with complex bias pattern and 1 bias token per label"
     ds_train = create_datasets(file_train, num_datasets=len(train_env_prob), rng=rng, bias_tokens=bias_tokens,
                                biased_samples_ratio=biased_samples_ratio, env_prob=train_env_prob,
-                               bias_pattern=bias_pattern)
+                               bias_pattern=bias_pattern, size=train_size)
     ds_val = create_datasets(file_val, num_datasets=len(val_env_prob), rng=rng, bias_tokens=bias_tokens,
                              biased_samples_ratio=biased_samples_ratio, env_prob=val_env_prob,
-                             bias_pattern=bias_pattern)
+                             bias_pattern=bias_pattern, size=val_size)
     ds_val_ood = create_datasets(file_val, num_datasets=1, rng=rng, bias_tokens=bias_tokens,
                                  biased_samples_ratio=biased_samples_ratio, env_prob=val_ood_env_prob,
                                  bias_pattern=bias_pattern)
@@ -543,6 +544,8 @@ def parse_cli():
                         default=32, metavar='BATCH_SIZE')
     sp_exp.add_argument('--bs-val', type=int, help='Val batch size',
                         default=32, metavar='BATCH_SIZE')
+    sp_exp.add_argument('--train-size', type=int, help='Train data size')
+    sp_exp.add_argument('--val-size', type=int, help='Val data size')
     sp_exp.add_argument('--eval-every-x-epoch', type=float, help='Evaluate on validation every x fraction of an epoch',
                         default=0.2)
     sp_exp.add_argument('--epochs', type=int,
@@ -578,6 +581,7 @@ def parse_cli():
     sp_exp.add_argument('--lr-scheduling-rate', type=float,
                         default=0.1)
     # </editor-fold>
+
 
     sp_test = sp.add_parser('test-irm', help='Evaluate model on test or validation')
     sp_test.set_defaults(subcmd_fn=test_irm)
@@ -696,10 +700,10 @@ if __name__ == "__main__":
     subcmd_fn(**vars(parsed_args))
     # run_irm(out_dir='results',
     #         # bias params
-    #         train_env_prob=(0.7, 0.9), val_env_prob=(0.7, 0.9), val_ood_env_prob=(0.33,), biased_samples_ratio=1.,
-    #         bias_tokens_per_label=3,
+    #         train_env_prob=(0.7, 0.9), val_env_prob=(0.7, 0.9), val_ood_env_prob=(0.33,), biased_samples_ratio=1.0,
     #         # Training params
-    #         bs_train=2, bs_val=2, eval_every_x_epoch=0.2, epochs=0, warm_up_epochs=1, early_stopping=3,
+    #         bs_train=2, bs_val=2, train_size=1000,
+    #         eval_every_x_epoch=0.2, epochs=0, warm_up_epochs=1, early_stopping=3,
     #         reg=1e3, warm_up_reg=1.0, gradient_checkpoint=False,
     #         # optimizer params
     #         optimizer_type='Adam', lr=1e-5, momentum=0.9, beta1=0.9, beta2=0.999,
