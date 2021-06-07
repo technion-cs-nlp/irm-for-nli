@@ -138,12 +138,12 @@ def update_results(list_field_tuple, result):
         results_list.append(np.array(getattr(result, field_name)).mean().item())
 
 
-def calc_mean_var_for_test(parent_dir):
+def calc_mean_var_for_test(parent_dir, test_dir, metric='accuracy'):
     acc = []
-    test_dirs = list(filter(lambda x: re.match('.*run[0-9]+.*/test_indomain', x[0]) is not None and 'run_output.json' in x[2], os.walk(parent_dir)))
+    test_dirs = list(filter(lambda x: re.match('.*run[0-9]+.*/' + test_dir, x[0]) is not None and 'run_output.json' in x[2], os.walk(parent_dir)))
     for d in test_dirs:
         with open(os.sep.join([d[0], 'run_output.json'])) as f:
-            acc.append(json.load(f)['results']['accuracy'])
+            acc.append(json.load(f)['results'][metric])
     mu, std = np.mean(acc), np.std(acc)
     dirs = '\n'.join(list(map(lambda x: x[0], test_dirs)))
     print(f'For test runs: {dirs}\n calculated mean: {mu} and standard deviation: {std}')
