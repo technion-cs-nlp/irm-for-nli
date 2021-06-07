@@ -446,13 +446,11 @@ def run_irm(scores_dir, out_dir='.', dataset='SNLI', pretrained_model='bert-base
     dataset_val = create_dataset(file_val, field_indices, label_str_to_int, label_int_to_str)
 
     # <editor-fold desc="generate environments">
-    assert type(total_size_train) == type(total_size_val), "If specifying total_size, must do so for both train and val"
+    # assert type(total_size_train) == type(total_size_val), "If specifying total_size, must do so for both train and val"
     if biased_samples_ratio is None:
         if total_size_train is None:
             ds_train = create_envs(dataset_train,
                                    train_scores, train_env_prob, threshold1, threshold2, rng=rng)  # list of datasets
-            ds_val = create_envs(dataset_val,
-                                 val_scores, val_env_prob, threshold1, threshold2, rng=rng)  # list of datasets
         else:
             biased_samples_ratio_train = get_bias_ratio(
                 dataset_train, train_scores, threshold1,
@@ -462,6 +460,10 @@ def run_irm(scores_dir, out_dir='.', dataset='SNLI', pretrained_model='bert-base
                 train_scores, train_env_prob, threshold1, threshold2,
                 biased_samples_ratio=biased_samples_ratio_train, total_size=total_size_train, rng=rng,
                 rel_tol=0.0005)  # list of datasets
+        if total_size_val is None:
+            ds_val = create_envs(dataset_val,
+                                 val_scores, val_env_prob, threshold1, threshold2, rng=rng)  # list of datasets
+        else:
             biased_samples_ratio_val = get_bias_ratio(dataset_val, val_scores, threshold1, threshold2)
             ds_val = create_restricted_envs(dataset_val, val_scores, val_env_prob, threshold1, threshold2,
                                             biased_samples_ratio=biased_samples_ratio_val, total_size=total_size_val,
@@ -1603,13 +1605,13 @@ if __name__ == "__main__":
     # fig.show()
     # fig = plot_splits_vs_thresholds(ds_train, train_scores, set='train')
     # fig.show()
-    # run_irm('scores/overlap_bias/mnli_binary', out_dir='temp', dataset='MNLI_Binary',
+    # run_irm('scores/overlap_bias/mnli/binary', out_dir='temp', dataset='MNLI_Binary',
     #         pretrained_model='bert-base-uncased',
     #         seed=None,
     #         # bias params
-    #         biased_samples_ratio=None, total_size_train=None, total_size_val=None,
+    #         biased_samples_ratio=0.52, total_size_train=100000, total_size_val=5000,
     #         train_env_prob=(0.7, 0.9), val_env_prob=(0.7, 0.9), threshold1=0.11, threshold2=0.4,
-    #         balance_data=False, class_weights=True,
+    #         class_weights=True,
     #         # Training params
     #         bs_train=4, bs_val=4, eval_every_x_epoch=0.2, epochs=4, warm_up_epochs=1, early_stopping=5,
     #         reg=1e3, warm_up_reg=1.0, gradient_checkpoint=False
