@@ -208,8 +208,8 @@ class Trainer(abc.ABC):
 
             # <editor-fold desc="early stopping">
             loss_increase = test_loss[-1] >= best_loss
-            error_overfit = train_error[-1] < best_train_error and test_error[-1] >= best_test_error
-            if early_stopping and (loss_increase or error_overfit):
+            # error_overfit = train_error[-1] < best_train_error and test_error[-1] >= best_test_error
+            if early_stopping and loss_increase:
                 steps_without_improvement += 1
                 if steps_without_improvement >= early_stopping:
                     if actual_num_steps < warm_up_steps:
