@@ -165,6 +165,7 @@ def calc_mean_var_for_test(parent_dir, test_dir, verbose=True,
             filter(lambda x: re.match('.*run[0-9]+.*/' + test_dir, x[0]) is not None and 'run_output.json' in x[2],
                    os.walk(parent_dir)))
         dirs = list(map(lambda x: os.path.dirname(x[0]), dirs))
+    dirs = sorted(dirs)
 
     ############################
     acc_dict = defaultdict(lambda: [])
