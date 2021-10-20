@@ -5,12 +5,15 @@ Accepted as a conference paper for NeurIPS 2021
 
 ## Code structure
 Each directory contains independent code to run a specific setting from the 3 settings described in the paper (toy experiment, synthetic bias and natural bias).
-In each directory a sub-directory named "reproduce/experiments" contains the experiments in the paper for that setting and the run commands (in a "run_commands.txt" file) used to produce them. 
-In the natrual bias setting there are two additional subdirectories: 
-1. "reproduce/scores" which contains the run command used to train the biased model.
-2. "scores" which contains the scores generated with the biased model. These scores are used to generate the environments in the natural bias settings.
+In each such directory we have a subdirectory named `reproduce` which contains:
+1. `reproduce/experiments` - The experiments in the paper for that setting and the run commands (in a `run_commands.txt` file) used to produce them
+2. `reproduce/reproduce_results.py` - a file that generates the figures and tables in the main body of the paper (given that models were trained and tested appropriately).
 
-All the code for the train and evaluation functions is found in "main.py" of the relevant setting. 
+In the natrual bias setting there are two additional subdirectories: 
+1. `reproduce/scores` which contains the run command used to train the biased model.
+2. `scores` which contains the scores generated with the biased model. These scores are used to generate the environments in the natural bias settings.
+
+All the code for the train and evaluation functions is found in the "main.py" file of the relevant setting. 
 
 ## Environment setup
 Clone this repo:
@@ -24,9 +27,16 @@ conda activate irm_for_nli
 
 ## Reproducing the results
 As explained in the "code structure" section. 
-Assume, for example, we want to reproduce the results for the bias prevalence analysis with hypothesis bias (experiment results described in Figure 1b in the paper). The bias prevalence analysis in the hypothesis bias setting includes 5 setups (each with different bias prevalence). Therefore ""natural_bias/reproduce/experiments/hypothesis_bias/snli/bias_prevalence_analysis" has 6 subdirectories - 5 for the run_commands with the different ratios (subdirs "ratio{1..5}") and a testing directory with the testing commands.
-So, to train the models run the file "natural_bias/reproduce/experiments/hypothesis_bias/snli/bias_prevalence_analysis/ratio{1..5}/run_commands.txt".
-To evaluate the models run "natural_bias/reproduce/experiments/hypothesis_bias/snli/bias_prevalence_analysis/testing/run_commands.txt".
-**Notes:**  
-1. Before training the models, change the --outdir flag in the "run_commands.txt" files as you see fit.
-2. Before testing the models update the directories in the "run_commands.txt" file accordingly. See documentation of the relevant test function in "main.py" for details on each flag.
+To reproduce the tables and figures from the paper follow three steps:
+1. Train the models (`reproduce/experiments/<choose experiment>/run_commands.txt`)
+2. Test the models (`reproduce/experiments/<choose experiment>/testing/run_commands.txt`)
+3. Produce figures and tables by running `reproduce/reproduce_results.py`)
+
+Assume, **for example**, we want to reproduce the results for the bias prevalence analysis with hypothesis bias (experiment results described in Figure 1b in the paper). 
+<br />The bias prevalence analysis in the hypothesis bias setting includes 5 setups (each with different bias prevalence). 
+<br />Therefore `natural_bias/reproduce/experiments/hypothesis_bias/snli/bias_prevalence_analysis` has 6 subdirectories - 5 for the run_commands with the different ratios (subdirs `ratio{1..5}`) and a testing directory with the testing commands.
+<br /><br />So, *to train the models* run the file `natural_bias/reproduce/experiments/hypothesis_bias/snli/bias_prevalence_analysis/ratio{1..5}/run_commands.txt`.
+<br />*To evaluate the models* run `natural_bias/reproduce/experiments/hypothesis_bias/snli/bias_prevalence_analysis/testing/run_commands.txt`.
+<br />Then, from the `natural_bias/reproduce` directory, run the `natural_bias/reproduce/reproduce_results.py` file *to produce the relevant figure* (comment out all the unecessary figures and tables). 
+
+  **Important Note:**   Before testing the models update the directories in the `run_commands.txt` file accordingly, i.e., replace `/home/yanadr/irm_for_nli_submission/` with the path to your root directory.
