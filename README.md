@@ -24,7 +24,9 @@ conda activate irm_for_nli
 
 ## Reproducing the results
 As explained in the "code structure" section. 
-Assume, for example, we want to reproduce the results for the bias prevalence analysis with hypothesis bias (experiment results described in Figure 1b in the paper). 
-Then, to train the models run the file "natural_bias/reproduce/experiments/hypothesis_bias/snli/bias_prevalence_analysis/run_commands.txt".
-To evaluate them run "natural_bias/reproduce/experiments/hypothesis_bias/snli/bias_prevalence_analysis/testing/run_commands.txt".
-**Note:**  Before running, change the --outdir flag in the "run_commands.txt" files as you see fit.
+Assume, for example, we want to reproduce the results for the bias prevalence analysis with hypothesis bias (experiment results described in Figure 1b in the paper). The bias prevalence analysis in the hypothesis bias setting includes 5 setups (each with different bias prevalence). Therefore ""natural_bias/reproduce/experiments/hypothesis_bias/snli/bias_prevalence_analysis" has 6 subdirectories - 5 for the run_commands with the different ratios (subdirs "ratio{1..5}") and a testing directory with the testing commands.
+So, to train the models run the file "natural_bias/reproduce/experiments/hypothesis_bias/snli/bias_prevalence_analysis/ratio{1..5}/run_commands.txt".
+To evaluate the models run "natural_bias/reproduce/experiments/hypothesis_bias/snli/bias_prevalence_analysis/testing/run_commands.txt".
+**Notes:**  
+1. Before training the models, change the --outdir flag in the "run_commands.txt" files as you see fit.
+2. Before testing the models update the directories in the "run_commands.txt" file accordingly. See documentation of the relevant test function in "main.py" for details on each flag.
