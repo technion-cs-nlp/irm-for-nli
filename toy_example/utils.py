@@ -184,7 +184,7 @@ def plot_predictions(samples_pred_dict, xticks_sep=None):
         axes[lbl].set_ylabel(f'probability of entailment', fontsize=18, labelpad=10.0)
         axes[lbl].set_xlabel(f'Steps', fontsize=18, labelpad=10.0)
         axes[lbl].set_xticklabels(axes[lbl].get_xticks().astype(int), fontsize=16)
-        axes[lbl].set_yticklabels(axes[lbl].get_yticks().astype(int), fontsize=16)
+        axes[lbl].set_yticklabels(np.around(axes[lbl].get_yticks().astype(float), decimals=2), fontsize=16)
         axes[lbl].legend(fontsize=18)
         if xticks_sep is not None:
             axes[lbl].axvline(x=xticks_sep, ymin=0, ymax=1, color='k', linewidth=2.5)
